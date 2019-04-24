@@ -4,7 +4,7 @@ Sentiment analysis involves utilizing customer reviews to predict feelings.  The
 
 ### Configuring the Data for Machine Learning
 
-Text data contains rich information for statistical models to train on.  Before training words must be converted into numbers.  To build a consistent dataset the modeler must lower case words, trim leading and trailing spaces and lower case all words.  Next, words must be reduced to their root meaning.  For example, running and run have the same intention and should be counted as one word (one meaning).  Lemmatizing words is the process of reducing a words in past, present or future tense to one word.  Lastly, words are vectorized.  In this case study I return a count of words per sentiment.
+Text data contains rich information for statistical models to train on.  Before training, words must be converted into numbers.  To build a consistent dataset the modeler must lower case words, trim leading and trailing spaces and lower case all words.  Next, words must be reduced to their root meaning.  For example, running and run have the same intention and should be counted as one word (one meaning).  Lemmatizing words is the process of reducing words in past, present or future tenses to one word.  Lastly, words are vectorized.  In this case study I return a count of words per sentiment.
 
 ### The Data
 
