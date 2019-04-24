@@ -122,7 +122,6 @@ if __name__ == "__main__":
     lower_case_strip(df)
     df = tokenize(df)
     bag_of_words = vectorize(df)
-    s_space = search_space()
     x_train, x_test, y_train, y_test = train_test(bag_of_words, df.Sentiment)
     rf_model, param_grid = r_forest()
     model = grid_search(rf_model, param_grid)
