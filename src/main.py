@@ -6,7 +6,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import WhitespaceTokenizer
 import string
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
@@ -27,6 +27,10 @@ def vectorize(df):
 
 
 def r_shuffle(df):
+    """
+    :param df: dataframe
+    :return: dataframe trimmed to 25,000 columns
+    """
 
     return sh(df, random_state=24)[:25000]
 
@@ -64,11 +68,23 @@ def lemmatize_text(text):
 
 
 def r_forest():
+    """
+    :return: a random forest classifier model and parameter grid to be
+            fed to a grid search
+    """
     model = RandomForestClassifier()
-    param_grid = {'n_estimators': [50, 100]
-        , 'min_samples_split': [5, 6]}
+    param_grid = {'n_estimators': [50, 100, 150, 200, 250, 300]
+        , 'min_samples_split': [3, 4, 5, 6]}
 
     return model, param_grid
+
+def a_boost():
+    """
+    :return: AdaboostClassifier model and param grid to be fed
+            to a grid search
+    """
+    model = AdaBoostClassifier()
+    param_grid = {'n_extimators': [50, 100, 150, 200, 250, 300]}
 
 
 def train_test(bag_of_words, y):
@@ -125,5 +141,5 @@ if __name__ == "__main__":
     x_train, x_test, y_train, y_test = train_test(bag_of_words, df.Sentiment)
     rf_model, param_grid = r_forest()
     model = grid_search(rf_model, param_grid)
-    b_model = best_model(x_train, y_train, model)
-    acc = scoring_metrics(b_model, x_test, y_test)
+    #b_model = best_model(x_train, y_train, model)
+    #acc = scoring_metrics(b_model, x_test, y_test)
