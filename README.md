@@ -18,7 +18,7 @@ Both the random forest and ada boost models were supplied to a comprehensive gri
 
 ### Results
 
-The random forest model achieved an accuracy of 57.8 percent, naive Bayes an accuracy of 55 percent and ada boost
+The random forest model achieved an accuracy of 57.8 percent, naive Bayes an accuracy of 55 percent and ada boost model an accuracy of 52 percent.  The optimal random forest model used 300 estimators and 6 samples per leaf.  The adaboost model achieved its best accuracy at 50 trees.
 
 
 ### Sources
