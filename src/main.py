@@ -12,6 +12,7 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle as sh
+from sklearn.metrics import accuracy_score, recall_score, precision_score
 
 def vectorize(df):
     """
@@ -109,6 +110,17 @@ def best_model(x, y, input_model):
     return input_model.fit(x, y)
 
 
+def scoring_metrics(input_model, x_test):
+    """
+    :param input_model: best random forest classifier
+    :param x_test: sparse matrix
+    :return:
+    """
+
+    y_pred = input_model.predict(x_test)
+    accuracy = accuracy_score(y_pred, y_test)
+    return accuracy
+
 if __name__ == "__main__":
     df = pd.read_csv('../data/train.tsv', sep='\t')
     df = r_shuffle(df)
@@ -120,3 +132,4 @@ if __name__ == "__main__":
     rf_model, param_grid = r_forest()
     model = grid_search(rf_model, param_grid)
     b_model = best_model(x_train, y_train, model)
+    scoring_metrics(b_model, x_test)
