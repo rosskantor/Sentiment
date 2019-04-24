@@ -127,4 +127,4 @@ if __name__ == "__main__":
     rf_model, param_grid = r_forest()
     model = grid_search(rf_model, param_grid)
     b_model = best_model(x_train, y_train, model)
-    scoring_metrics(b_model, x_test, y_test)
+    acc = scoring_metrics(b_model, x_test, y_test)
