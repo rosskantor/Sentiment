@@ -15,6 +15,7 @@ from sklearn.utils import shuffle as sh
 from sklearn.metrics import accuracy_score, recall_score, precision_score
 from sklearn.naive_bayes import MultinomialNB
 
+
 def vectorize(df):
     """
     :param df: dataframe
@@ -33,6 +34,7 @@ def r_shuffle(df):
     """
 
     return sh(df, random_state=24)[:25000]
+
 
 def lower_case_strip(text):
     """
@@ -78,13 +80,15 @@ def r_forest():
 
     return model, param_grid
 
+
 def a_boost():
     """
     :return: AdaboostClassifier model and param grid to be fed
             to a grid search
     """
     model = AdaBoostClassifier()
-    param_grid = {'n_extimators': [50, 100, 150, 200, 250, 300]}
+    param_grid = {'n_estimators': [50, 100, 150, 200, 250, 300]}
+    return model, param_grid
 
 
 def train_test(bag_of_words, y):
@@ -135,7 +139,7 @@ def scoring_metrics(input_model, x, y):
 if __name__ == "__main__":
     df = pd.read_csv('../data/train.tsv', sep='\t')
     df = r_shuffle(df)
-    lower_case_strip(df)
+    df = lower_case_strip(df)
     df = tokenize(df)
     bag_of_words = vectorize(df)
     x_train, x_test, y_train, y_test = train_test(bag_of_words, df.Sentiment)
