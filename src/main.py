@@ -141,5 +141,5 @@ if __name__ == "__main__":
     x_train, x_test, y_train, y_test = train_test(bag_of_words, df.Sentiment)
     rf_model, param_grid = r_forest()
     model = grid_search(rf_model, param_grid)
-    #b_model = best_model(x_train, y_train, model)
-    #acc = scoring_metrics(b_model, x_test, y_test)
+    b_model = best_model(x_train, y_train, model)
+    acc = scoring_metrics(b_model, x_test, y_test)
